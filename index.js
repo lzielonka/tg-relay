@@ -9,14 +9,15 @@ const telegramBot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 const webhook = new WebhookClient({ url: DISCORD_WEBHOOK_URL });
 
 telegramBot.on('channel_post', async (telegramMsg) => {
-    console.log(telegramMsg);
-    const { chat, text, from } = telegramMsg;
+    // console.log(telegramMsg);
+    // const { chat, text, from } = telegramMsg;
+    const { chat, text } = telegramMsg;
     if (chat.id === TELEGRAM_CHANNEL_ID) {
-        console.log(text);
-        const discordMessageContent = text;
+        // console.log(text);
+        // const discordMessageContent = text;
 
         try {
-            await webhook.send(discordMessageContent);
+            await webhook.send(text);
         } catch (e) {}
     }
 });
